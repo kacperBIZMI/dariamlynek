@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Daria Młynek — specjalistka ds. komunikacji wizualnej i webdesignerka. Portfolio: grafika, branding, projektowanie stron www, fotografia.">
+  <title>Daria Młynek — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/M.png">
+</head>
+
+<body>
+
+  <!-- NAV OVERLAY (mobile) -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="header__logo">Daria Młynek</a>
+
+      <button class="header__hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="header__nav" id="nav">
+        <a href="#projects">Projekty</a>
+        <a href="#about">O mnie</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__heading" data-animate="scale-in">
+        <h1 class="hero__title">
+          <svg class="hero__title-svg" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+            <text x="220" y="100" class="hero__intro-text">Cześć, nazywam się</text>
+            <text x="-200" y="72%" text-anchor="start" class="hero__title-text">Daria</text>
+            <text x="420" y="355" class="hero__subtitle-text">i zajmuję się...</text>
+          </svg>
+        </h1>
+      </div>
+    </div>
+
+    <div class="skills-ticker-wrapper">
+      <svg class="skills-arc" viewBox="2000 0 2000 400" overflow="visible" preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="snake-path"
+            d="M 0,200 C 333,-50 666,-50 1000,200 S 1666,450 2000,200 S 2666,-50 3000,200 S 3666,450 4000,200 S 4666,-50 5000,200 S 5666,450 6000,200 S 6666,-50 7000,200 S 7666,450 8000,200" />
+        </defs>
+        <text class="skills-arc-text">
+          <!-- Segment 1 -->
+          <textPath href="#snake-path" startOffset="2000" textLength="2000" lengthAdjust="spacing">
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Grafiką&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Brandingiem&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Projektowaniem stron www&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Fotografią&nbsp;&nbsp;&nbsp;
+            <animate attributeName="startOffset" from="2000" to="0" dur="25s" repeatCount="indefinite"
+              calcMode="linear" />
+          </textPath>
+
+          <!-- Segment 2 -->
+          <textPath href="#snake-path" startOffset="4000" textLength="2000" lengthAdjust="spacing">
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Grafiką&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Brandingiem&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Projektowaniem stron www&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Fotografią&nbsp;&nbsp;&nbsp;
+            <animate attributeName="startOffset" from="4000" to="2000" dur="25s" repeatCount="indefinite"
+              calcMode="linear" />
+          </textPath>
+
+          <!-- Segment 3 -->
+          <textPath href="#snake-path" startOffset="6000" textLength="2000" lengthAdjust="spacing">
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Grafiką&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Brandingiem&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Projektowaniem stron www&nbsp;&nbsp;&nbsp;
+            <tspan class="arc-star">✧</tspan>&nbsp;&nbsp;&nbsp;Fotografią&nbsp;&nbsp;&nbsp;
+            <animate attributeName="startOffset" from="6000" to="4000" dur="25s" repeatCount="indefinite"
+              calcMode="linear" />
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects__collage">
+        <!-- 1. Girl Illustration (Top Left) -->
+        <a href="grafika.html" class="projects__item projects__item--1" data-animate="rotate-in">
+          <img src="images/Index_zdj/Group 14.png" alt="Grafika — ilustracje artystyczne" loading="lazy">
+        </a>
+        <!-- 2. GymCity Monitor (Center) -->
+        <a href="www.html" class="projects__item projects__item--3" data-animate="rotate-in">
+          <img src="images/Index_zdj/Group 16.png" alt="Projektowanie stron www — GymCity" loading="lazy">
+        </a>
+        <!-- 3. Brochure (Top Right) -->
+        <a href="foto.html" class="projects__item projects__item--4" data-animate="rotate-in">
+          <img src="images/Index_zdj/1111 3.png" alt="Branding — projekt publikacji" loading="lazy">
+        </a>
+        <!-- 4. Kurol Branding (Bottom Right) -->
+        <a href="branding.html" class="projects__item projects__item--5" data-animate="rotate-in">
+          <img src="images/Index_zdj/Group 15.svg" alt="Branding - Kurol" loading="lazy">
+        </a>
+      </div>
+      <div class="projects__cta">
+        <a href="grafika.html" id="randomProjectLink" class="projects__cta-text">kliknij, aby zobaczyć więcej</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__content">
+        <div class="about__info" data-animate="fade-left">
+          <h2 class="about__title">O mnie</h2>
+          <div class="about__text">
+            <p>Nazywam się Daria i jestem specjalistką ds. komunikacji wizualnej oraz webdesignerką. Ukończyłam grafikę
+              ze specjalizacją UX w Wyższej Szkole Technologii Informatycznych w Katowicach.</p>
+            <p>Moje projekty charakteryzują się harmonią między estetyką a funkcjonalnością. Wierzę, że każdy etap
+              pracy, od koncepcji po finalny efekt, jest kluczowy. Pracuję z pasją, zwracając uwagę na detale, co
+              pozwala mi tworzyć rozwiązania, które nie tylko przyciągają wzrok, ale także spełniają oczekiwania.</p>
+            <p>Po godzinach projektowania rozwijam swoje pasje malując i majsterkując. Lubię też uciec w góry, gdzie
+              mogę na chwilę zwolnić i oczyścić głowę.</p>
+          </div>
+        </div>
+        <div class="about__portrait" data-animate="fade-right">
+          <img src="images/Index_zdj/ChatGPT Image 24 lut 2026, 12_57_19 1.svg" alt="Daria Młynek — portret"
+            loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery">
+    <div class="container">
+      <div class="gallery__collage">
+        <!-- 1. Fale (Top Left) -->
+        <div class="gallery__item gallery__item--1" data-animate="rotate-in">
+          <img src="images/Index_zdj/DSC_6426 1.png" alt="Malarstwo — fale" loading="lazy">
+        </div>
+        <!-- 2. Pink Cow (Bottom Left) -->
+        <div class="gallery__item gallery__item--2" data-animate="rotate-in">
+          <img src="images/Index_zdj/DSC_6424 1.png" alt="Malarstwo — różowa krowa" loading="lazy">
+        </div>
+        <!-- 3. Mountains (Right) -->
+        <div class="gallery__item gallery__item--3" data-animate="rotate-in">
+          <img src="images/Index_zdj/DSC_1972 1.png" alt="Daria w górach" loading="lazy">
+        </div>
+        <!-- 4. Dog (Bottom Center) -->
+        <div class="gallery__item gallery__item--4" data-animate="rotate-in">
+          <img src="images/Index_zdj/DSC_2385 1.png" alt="Pies na łące" loading="lazy">
+        </div>
+        <!-- 5. Daria + Dog (Bottom Right) -->
+        <div class="gallery__item gallery__item--5" data-animate="rotate-in">
+          <img src="images/Index_zdj/DSC_1780 1.png" alt="Daria z psem w lesie" loading="lazy">
+        </div>
+
+        <!-- TAPES -->
+        <!-- Tape A (Top-left abstract) -->
+        <div class="gallery__tape gallery__tape--1">
+          <img src="images/Index_zdj/DSC_6423 2.png" alt="Tape mask">
+        </div>
+        <!-- Tape B (Abstract -> Mountains) -->
+        <div class="gallery__tape gallery__tape--2">
+          <img src="images/Index_zdj/DSC_6423 3.png" alt="Tape mask">
+        </div>
+        <!-- Tape C (Abstract -> Cow) -->
+        <div class="gallery__tape gallery__tape--3">
+          <img src="images/Index_zdj/DSC_6423 4.png" alt="Tape mask">
+        </div>
+        <!-- Tape D (Mountains -> Dogs) -->
+        <div class="gallery__tape gallery__tape--4">
+          <img src="images/Index_zdj/DSC_6423 5.png" alt="Tape mask">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <h2 class="footer__title" data-animate>Zapraszam do kontaktu</h2>
+      <div class="footer__icons" data-animate>
+        <a href="tel:+48661542814" class="footer__icon-link footer__icon-link--phone" aria-label="Telefon">
+          <span class="footer__icon-text">+48 661 542 814</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+        </a>
+        <a href="mailto:mlynekcreativelab@gmail.com" class="footer__icon-link footer__icon-link--email"
+          aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span class="footer__icon-text">mlynekcreativelab@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" aria-label="Przewiń do góry">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

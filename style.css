@@ -1,0 +1,1392 @@
+/* ===================================================
+   DARIA MŁYNEK PORTFOLIO — STYLE SYSTEM
+   =================================================== */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&family=Meow+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+/* --- CSS Custom Properties --- */
+:root {
+  --bg-main: #F9F9FB;
+  --accent: #EF3219;
+  --accent-hover: #d42a13;
+  --text-dark: #1A1A1A;
+  --text-body: #333333;
+  --text-light: #666666;
+
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-script: 'Meow Script', cursive;
+  --font-display: 'Playfair Display', serif;
+
+  --header-height: 90px;
+  --max-width: 1280px;
+  --section-padding: 100px 0;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background: var(--bg-main) url('images/Index_zdj/Backgroud.png') no-repeat center center fixed;
+  background-size: cover;
+  line-height: 1.7;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* --- Animation Ready Classes --- */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="fade-left"] {
+  transform: translateX(-40px);
+}
+
+[data-animate="fade-left"].is-visible {
+  transform: translateX(0);
+}
+
+[data-animate="fade-right"] {
+  transform: translateX(40px);
+}
+
+[data-animate="fade-right"].is-visible {
+  transform: translateX(0);
+}
+
+[data-animate="scale-in"] {
+  transform: scale(0.9);
+}
+
+[data-animate="scale-in"].is-visible {
+  transform: scale(1);
+}
+
+[data-animate="rotate-in"] {
+  transform: rotate(-5deg) scale(0.95);
+}
+
+[data-animate="rotate-in"].is-visible {
+  transform: rotate(0deg) scale(1);
+}
+
+/* ===================================================
+   HEADER / NAVIGATION
+   =================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  background: rgba(249, 249, 251, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInDelayed 1s ease-in-out 3.2s backwards;
+}
+
+.header.scrolled {
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+  background: rgba(249, 249, 251, 0.98);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header__logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+
+.header__nav a {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  position: relative;
+  padding: 6px 0;
+}
+
+.header__nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.header__nav a:hover {
+  color: var(--accent);
+}
+
+.header__nav a:hover::after {
+  width: 100%;
+}
+
+/* Mobile hamburger */
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  z-index: 1001;
+}
+
+.header__hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text-dark);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.header__hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.header__hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.header__hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===================================================
+   HERO SECTION
+   =================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--header-height);
+  padding-bottom: 0;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
+.hero__heading {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 20px 0;
+}
+
+.hero__title {
+  text-align: left;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.hero__title-svg {
+  height: 50vw;
+  width: 80vw;
+  max-height: 500px;
+  max-width: 1100px;
+  overflow: visible;
+  display: block;
+  margin: 0;
+}
+
+/* Intro text — "Cześć, nazywam się" */
+.hero__intro-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 42px;
+  color: var(--text-dark);
+  opacity: 0;
+  animation: fadeInText 0.8s ease forwards 0.2s;
+  padding-left: 220px;
+}
+
+/* SVG main title — "Daria" */
+.hero__title-text {
+  font-family: var(--font-script);
+  font-size: 400px;
+  font-weight: 400;
+  fill: transparent;
+  stroke: var(--accent);
+  stroke-dasharray: 3186;
+  animation: drawDaria 2s linear 1s both,
+    fillDaria 0.6s ease-in-out 2.5s both;
+}
+
+/* Subtitle text — "i zajmuję się..." */
+.hero__subtitle-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 42px;
+  color: var(--text-dark);
+  opacity: 0;
+  animation: fadeInText 0.8s ease forwards 3s;
+  padding-left: 420px;
+  margin-top: -60px;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes drawDaria {
+  0% {
+    stroke-dashoffset: 3186;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillDaria {
+  0% {
+    fill: transparent;
+  }
+
+  100% {
+    fill: var(--accent);
+  }
+}
+
+/* --- Skills Arc (Snake Marquee) --- */
+.skills-ticker-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  height: 400px;
+  overflow: visible;
+  margin: -60px 0 0 0;
+  animation: fadeInDelayed 1s ease-in-out 3.2s backwards;
+}
+
+.skills-arc {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.skills-arc-text {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 500;
+  fill: var(--text-dark);
+}
+
+.arc-star {
+  font-family: 'Arial', sans-serif;
+  font-size: 50px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  baseline-shift: -4px;
+}
+
+@keyframes fadeInDelayed {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===================================================
+   PROJECTS SECTION
+   =================================================== */
+.projects {
+  padding: var(--section-padding);
+}
+
+.projects__collage {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 650px;
+}
+
+.projects__item {
+  position: absolute;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s, filter 0.4s ease, opacity 0.4s ease;
+  cursor: pointer;
+}
+
+.projects__item:hover {
+  z-index: 10 !important;
+}
+
+.projects__collage:has(.projects__item:hover) .projects__item:not(:hover) {
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+.projects__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 1. Girl Illustration (Top Left) */
+.projects__item--1 {
+  width: 580px;
+  top: 20px;
+  left: -10%;
+  z-index: 1;
+  transform: rotate(-6deg);
+}
+
+.projects__item--1:hover {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* 2. Pink Squid / Graphic (Bottom Left) */
+.projects__item--2 {
+  width: 450px;
+  bottom: -30px;
+  left: 12%;
+  z-index: 3;
+  transform: rotate(-10deg);
+}
+
+.projects__item--2:hover {
+  transform: rotate(-10deg) scale(1.05);
+}
+
+/* 3. GymCity Monitor (Center) */
+.projects__item--3 {
+  width: 650px;
+  top: 0px;
+  left: 50%;
+  margin-left: -325px;
+  z-index: 5;
+  transform: rotate(0deg);
+}
+
+.projects__item--3:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* 4. Brochure (Top Right) */
+.projects__item--4 {
+  width: 420px;
+  top: 40px;
+  right: -10%;
+  z-index: 2;
+  transform: rotate(12deg);
+}
+
+.projects__item--4:hover {
+  transform: rotate(12deg) scale(1.05);
+}
+
+/* 5. Kurol Branding (Bottom Right) */
+.projects__item--5 {
+  width: 400px;
+  bottom: 80px;
+  right: -2%;
+  z-index: 4;
+  transform: rotate(5deg);
+}
+
+.projects__item--5:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.projects__cta {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.projects__cta-text {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.projects__cta-text:hover {
+  color: var(--accent);
+}
+
+/* ===================================================
+   ABOUT SECTION
+   =================================================== */
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about__title {
+  font-family: var(--font-script);
+  font-size: clamp(4rem, 10vw, 8rem);
+  color: var(--accent);
+  font-weight: 400;
+  line-height: 0.9;
+  margin-bottom: 30px;
+}
+
+.about__text p {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 16px;
+}
+
+.about__text p:last-child {
+  margin-bottom: 0;
+}
+
+.about__portrait {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about__portrait img {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* ===================================================
+   GALLERY SECTION (personal photos collage)
+   =================================================== */
+.gallery {
+  padding: 60px 0 100px;
+}
+
+/* ===================================================
+   GALLERY COLLAGE
+   =================================================== */
+.gallery {
+  padding: 0 0 250px;
+}
+
+.gallery__collage {
+  position: relative;
+  max-width: 1200px;
+  margin: -100px auto 0;
+  min-height: 800px;
+}
+
+.gallery__item {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s, filter 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===================================================
+   TAPES
+   =================================================== */
+.gallery__tape {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.gallery__tape img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery__tape--1 {
+  width: 200px;
+  top: 40px;
+  left: -4%;
+  transform: rotate(-15deg);
+}
+
+.gallery__tape--2 {
+  width: 140px;
+  top: 350px;
+  left: 27%;
+  transform: rotate(20deg);
+}
+
+.gallery__tape--3 {
+  width: 300px;
+  top: 180px;
+  left: 50%;
+  transform: rotate(-8deg);
+}
+
+.gallery__tape--4 {
+  width: 250px;
+  top: 540px;
+  left: 58%;
+}
+
+/* Collage positions — matching scattered design */
+
+/* 1. Abstract (Top Left) */
+.gallery__item--1 {
+  width: 520px;
+  top: 50px;
+  left: -2%;
+  z-index: 2;
+  transform: rotate(-5deg);
+}
+
+
+/* 2. Pink Cow (Bottom Left) */
+.gallery__item--2 {
+  width: 440px;
+  top: 400px;
+  left: 2%;
+  z-index: 3;
+  transform: rotate(-12deg);
+}
+
+
+/* 3. Mountain Daria (Right Center) */
+.gallery__item--3 {
+  width: 580px;
+  top: 220px;
+  right: -5%;
+  z-index: 1;
+  transform: rotate(5deg);
+}
+
+
+/* 4. Dog Alone (Bottom Center) */
+.gallery__item--4 {
+  width: 380px;
+  top: 600px;
+  left: 42%;
+  z-index: 5;
+  transform: rotate(-8deg);
+}
+
+
+/* 5. Daria + Dog (Bottom Right) */
+.gallery__item--5 {
+  width: 350px;
+  top: 625px;
+  right: 1%;
+  z-index: 4;
+  transform: rotate(10deg);
+}
+
+
+/* ===================================================
+   FOOTER / CONTACT
+   =================================================== */
+.footer {
+  padding: 80px 0 20px;
+  text-align: center;
+  position: relative;
+}
+
+.footer__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  margin-bottom: 30px;
+}
+
+.footer__icons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.footer__icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 24px;
+  color: var(--accent);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.footer__icon-link:hover {
+  transform: scale(1.1);
+  background: rgba(239, 50, 25, 0.08);
+}
+
+.footer__icon-text {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  transition: max-width 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+}
+
+.footer__icon-link--phone:hover .footer__icon-text {
+  max-width: 250px;
+  opacity: 1;
+  margin-right: 12px;
+}
+
+.footer__icon-link--email:hover .footer__icon-text {
+  max-width: 450px;
+  opacity: 1;
+  margin-left: 12px;
+}
+
+.footer__icon-link svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.footer__copy {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 20px;
+}
+
+/* ===================================================
+   SCROLL TO TOP BUTTON
+   =================================================== */
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(239, 50, 25, 0.3);
+}
+
+.scroll-top:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(239, 50, 25, 0.4);
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===================================================
+   RESPONSIVE — LARGE DESKTOP (< 1400px)
+   =================================================== */
+@media (max-width: 1400px) {
+  .projects__item--1 {
+    width: 460px;
+  }
+
+  .projects__item--3 {
+    width: 540px;
+    margin-left: -270px;
+  }
+
+  .projects__item--4 {
+    width: 360px;
+  }
+
+  .projects__item--5 {
+    width: 340px;
+  }
+
+  .gallery__item--1 {
+    width: 420px;
+  }
+
+  .gallery__item--2 {
+    width: 360px;
+  }
+
+  .gallery__item--3 {
+    width: 480px;
+  }
+
+  .gallery__item--4 {
+    width: 320px;
+  }
+
+  .gallery__item--5 {
+    width: 300px;
+  }
+}
+
+/* --- Hero SVG shift for narrower desktops --- */
+@media (max-width: 1325px) {
+  .hero__title-svg {
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 1170px) {
+  .hero__title-svg {
+    margin-left: 140px;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — TABLET (< 1200px)
+   =================================================== */
+@media (max-width: 1200px) {
+  :root {
+    --section-padding: 80px 0;
+  }
+
+  .container {
+    padding: 0 32px;
+  }
+
+  /* Hero tablet */
+  .hero__intro-text {
+    font-size: 60px;
+  }
+
+  .hero__subtitle-text {
+    font-size: 60px;
+  }
+
+  .hero__title-text {
+    font-size: 400px;
+  }
+
+  .skills-ticker-wrapper {
+    height: 300px;
+    margin: -40px 0 0 0;
+  }
+
+  .skills-arc-text {
+    font-size: 30px;
+  }
+
+  /* Projects tablet — scale all items proportionally */
+  .projects__collage {
+    min-height: 500px;
+  }
+
+  .projects__item--1 {
+    width: 380px;
+    left: -6%;
+  }
+
+  .projects__item--3 {
+    width: 440px;
+    margin-left: -220px;
+  }
+
+  .projects__item--4 {
+    width: 300px;
+    right: -6%;
+  }
+
+  .projects__item--5 {
+    width: 280px;
+    right: 0%;
+  }
+
+  .projects__cta {
+    padding-top: 20px;
+  }
+
+  /* Gallery tablet */
+  .gallery__collage {
+    min-height: 650px;
+  }
+
+  .gallery__item--1 {
+    width: 360px;
+  }
+
+  .gallery__item--2 {
+    width: 300px;
+    top: 340px;
+  }
+
+  .gallery__item--3 {
+    width: 400px;
+    top: 180px;
+  }
+
+  .gallery__item--4 {
+    width: 280px;
+    top: 480px;
+    left: 38%;
+  }
+
+  .gallery__item--5 {
+    width: 260px;
+    top: 500px;
+  }
+
+  .gallery__tape--1 {
+    width: 160px;
+  }
+
+  .gallery__tape--2 {
+    width: 110px;
+    top: 280px;
+  }
+
+  .gallery__tape--3 {
+    width: 220px;
+    top: 140px;
+  }
+
+  .gallery__tape--4 {
+    width: 180px;
+    top: 420px;
+  }
+
+  /* About tablet */
+  .about__content {
+    gap: 40px;
+  }
+
+  .about__portrait img {
+    max-width: 380px;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — SMALL TABLET (< 992px)
+   =================================================== */
+@media (max-width: 992px) {
+
+  html,
+  body {
+    --section-padding: 70px 0;
+    --header-height: 70px;
+  }
+
+  /* Header — show hamburger at this breakpoint */
+  .header__hamburger {
+    display: flex;
+  }
+
+  .header__nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(249, 249, 251, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 36px;
+    padding: 40px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .header__nav.open {
+    right: 0;
+  }
+
+  .header__nav a {
+    font-size: 1.05rem;
+    letter-spacing: 3px;
+  }
+
+  /* Keep Daria text visible — SVG text starts at x=-200 */
+  .hero__title-svg {
+    margin-left: 17vw;
+  }
+
+  /* Hero small tablet */
+  .hero__intro-text {
+    font-size: 60px;
+  }
+
+  .hero__subtitle-text {
+    font-size: 60px;
+  }
+
+  .hero__title-text {
+    font-size: 400px;
+  }
+
+  .skills-ticker-wrapper {
+    height: 220px;
+    margin: -20px 0 0 0;
+  }
+
+  .skills-arc-text {
+    font-size: 24px;
+  }
+
+  .arc-star {
+    font-size: 36px;
+  }
+
+  /* Projects — switch to grid on small tablets */
+  .projects {
+    padding: 60px 0;
+  }
+
+  .projects__collage {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .projects__item {
+    position: static !important;
+    width: 100% !important;
+    transform: rotate(0deg) !important;
+    margin: 0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .projects__item:hover {
+    transform: scale(1.03) !important;
+  }
+
+  .projects__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .projects__cta {
+    padding-top: 24px;
+  }
+
+  /* About — single column */
+  .about__content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .about__info {
+    order: 2;
+  }
+
+  .about__portrait {
+    justify-content: center;
+    order: 1;
+  }
+
+  .about__portrait img {
+    max-width: 320px;
+  }
+
+  .about__text p {
+    text-align: left;
+  }
+
+  /* Gallery — switch to grid */
+  .gallery {
+    padding: 40px 0 100px;
+  }
+
+  .gallery__collage {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    min-height: auto;
+    margin-top: 0;
+  }
+
+  .gallery__tape {
+    display: none;
+  }
+
+  .gallery__item {
+    position: static !important;
+    width: 100% !important;
+    transform: rotate(0deg) !important;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .gallery__item:hover {
+    transform: scale(1.03) !important;
+  }
+
+  /* IMPORTANT: No cropping — preserve natural aspect ratio */
+  .gallery__item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Make last gallery item span full width for visual balance */
+  .gallery__item--5 {
+    grid-column: 1 / -1;
+  }
+
+  .gallery__item--5 img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — MOBILE (< 768px)
+   =================================================== */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+    --section-padding: 50px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* Hero mobile — keep Daria visible */
+  .hero__title-svg {
+    margin-left: 15vw;
+  }
+
+  .hero {
+    padding-top: calc(var(--header-height) + 20px);
+    min-height: auto;
+  }
+
+  .hero__heading {
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+
+  .hero__intro-text {
+    font-size: 60px;
+    padding-left: 0;
+  }
+
+  .hero__title-text {
+    font-size: 400px;
+  }
+
+  .hero__subtitle-text {
+    font-size: 60px;
+    padding-left: 0;
+  }
+
+  .skills-ticker-wrapper {
+    height: 160px;
+    margin: 0;
+  }
+
+  .skills-arc-text {
+    font-size: 20px;
+  }
+
+  .arc-star {
+    font-size: 28px;
+  }
+
+  /* Projects mobile */
+  .projects__collage {
+    gap: 16px;
+  }
+
+  .projects__item {
+    border-radius: 10px;
+  }
+
+  /* Gallery mobile */
+  .gallery__collage {
+    gap: 12px;
+  }
+
+  .gallery__item {
+    border-radius: 10px;
+  }
+
+  /* Footer mobile — always show contact info */
+  .footer {
+    padding: 60px 0 24px;
+  }
+
+  .footer__title {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  .footer__icons {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer__icon-link {
+    width: auto;
+    border-radius: 24px;
+    padding: 8px 16px;
+    background: rgba(239, 50, 25, 0.05);
+  }
+
+  .footer__icon-link:hover {
+    background: rgba(239, 50, 25, 0.12);
+  }
+
+  .footer__icon-text {
+    max-width: 450px;
+    opacity: 1;
+    margin: 0 8px;
+    font-size: 0.85rem;
+  }
+
+  .scroll-top {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — SMALL MOBILE (< 480px)
+   =================================================== */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Hero small mobile */
+  .hero__title-svg {
+    margin-left: 13vw;
+  }
+
+  .hero__intro-text {
+    font-size: 60px;
+  }
+
+  .hero__title-text {
+    font-size: 400px;
+  }
+
+  .hero__subtitle-text {
+    font-size: 60px;
+  }
+
+  .skills-ticker-wrapper {
+    height: 270px;
+  }
+
+  .skills-arc-text {
+    font-size: 16px;
+  }
+
+  .arc-star {
+    font-size: 22px;
+  }
+
+  /* Projects — single column for clarity */
+  .projects__collage {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .projects__item {
+    border-radius: 8px;
+  }
+
+  /* About */
+  .about__title {
+    font-size: 3.5rem;
+  }
+
+  .about__portrait img {
+    max-width: 240px;
+  }
+
+  .about__text p {
+    font-size: 0.9rem;
+  }
+
+  /* Gallery — single column to show full images */
+  .gallery__collage {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery__item {
+    border-radius: 8px;
+  }
+
+  .gallery__item--5 {
+    grid-column: auto;
+  }
+
+  /* Footer */
+  .footer__title {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .footer__icon-text {
+    font-size: 0.9rem;
+  }
+
+  .scroll-top {
+    bottom: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ===================================================
+   MOBILE NAV OVERLAY
+   =================================================== */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
